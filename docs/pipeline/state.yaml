@@ -1,0 +1,19 @@
+topic: "智能客服运营系统"
+topic_slug: "smart-customer-service"
+status: in_progress
+current_phase: 4
+paused_at_gate: null
+started_at: "2026-03-30T00:00:00Z"
+completed_at: null
+source_project: "d:/Dev/Projects/Intelli_cave/e_commerce"
+migration_mode: true
+phases:
+  1: { name: ideation, status: completed, started_at: "2026-03-30T00:00:00Z", completed_at: "2026-03-30T00:01:00Z", output: "docs/plans/smart-customer-service-ideation.md", error: null, retries: 0 }
+  2: { name: product-spec, status: completed, started_at: "2026-03-30T00:01:00Z", completed_at: "2026-03-30T00:02:00Z", output: "docs/plans/smart-customer-service-design.md", error: null, retries: 0 }
+  3: { name: ui-ux, status: completed, started_at: "2026-03-30T00:02:00Z", completed_at: "2026-03-30T00:03:00Z", output: "docs/plans/smart-customer-service-ui.md", error: null, retries: 0 }
+  4: { name: api, status: pending, started_at: null, completed_at: null, output: null, error: null, retries: 0 }
+  5: { name: planning, status: pending, started_at: null, completed_at: null, output: null, error: null, retries: 0 }
+  6: { name: development, status: pending, started_at: null, completed_at: null, output: null, error: null, retries: 0 }
+  7: { name: verification, status: pending, started_at: null, completed_at: null, output: null, error: null, retries: 0 }
+  8: { name: delivery, status: pending, started_at: null, completed_at: null, output: null, error: null, retries: 0 }
+gate_history: []

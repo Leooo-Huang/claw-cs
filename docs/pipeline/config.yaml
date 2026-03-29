@@ -1,0 +1,34 @@
+# AutoDev 流水线配置
+pipeline:
+  mode: auto
+
+gates: {}
+
+sleep_mode: false
+
+ralph_loop:
+  max_iterations: 50
+  completion_promise: "AUTODEV PIPELINE COMPLETE"
+
+phases:
+  ideation:
+    max_iterations: 3
+  product_spec: {}
+  ui_ux:
+    include_wireframes: true
+  api:
+    include_schemas: true
+  planning:
+    execution_style: auto
+  development:
+    use_worktree: false
+    branch_pattern: "autodev/{topic-slug}"
+  frontend:
+    stack: "nextjs"
+    ui_library: "shadcn"
+    css: "tailwind"
+  delivery:
+    default_action: ask
+
+deployment:
+  auto_deploy: false
