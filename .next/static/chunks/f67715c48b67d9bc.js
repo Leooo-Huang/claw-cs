@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,31713,t=>{"use strict";var e=t.i(54902);function c(){(0,e.redirect)("/tickets")}t.s(["default",()=>c])}]);

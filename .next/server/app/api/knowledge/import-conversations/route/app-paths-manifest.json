@@ -1,0 +1,3 @@
+{
+  "/api/knowledge/import-conversations/route": "app/api/knowledge/import-conversations/route.js"
+}

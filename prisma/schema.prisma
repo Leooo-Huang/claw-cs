@@ -1,0 +1,116 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// === 知识库 ===
+
+model KnowledgeRule {
+  id            String   @id @default(cuid())
+  condition     String
+  content       String
+  tags          String   @default("[]")
+  category      String   @default("general")
+  source        String   @default("manual")
+  sourceRef     String?
+  status        String   @default("active")
+  confidence    Float    @default(1.0)
+  hitCount      Int      @default(0)
+  conflictsWith String   @default("[]")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model KnowledgeDocument {
+  id         String           @id @default(cuid())
+  filename   String
+  fileType   String
+  fileSize   Int              @default(0)
+  chunkCount Int              @default(0)
+  sourceType String           @default("other")
+  status     String           @default("active")
+  uploadedAt DateTime         @default(now())
+  chunks     KnowledgeChunk[]
+}
+
+model KnowledgeChunk {
+  id         String            @id @default(cuid())
+  documentId String
+  document   KnowledgeDocument @relation(fields: [documentId], references: [id])
+  content    String
+  chunkIndex Int
+  createdAt  DateTime          @default(now())
+}
+
+// === 工单 ===
+
+model Ticket {
+  id              String              @id @default(cuid())
+  channelId       String?
+  channel         Channel?            @relation(fields: [channelId], references: [id])
+  channelType     String              @default("mock")
+  externalId      String?
+  customerName    String
+  customerMessage String
+  intent          String?
+  sentiment       String?
+  orderId         String?
+  orderInfo       String?
+  aiReply         String?
+  aiReasoning     String?
+  aiConfidence    Float?
+  aiSearchMeta    String?
+  citedRuleIds    String              @default("[]")
+  finalReply      String?
+  repliedVia      String?
+  status          String              @default("pending")
+  createdAt       DateTime            @default(now())
+  repliedAt       DateTime?
+  candidates      LearningCandidate[]
+}
+
+// === 学习闭环 ===
+
+model LearningCandidate {
+  id                 String    @id @default(cuid())
+  ticketId           String
+  ticket             Ticket    @relation(fields: [ticketId], references: [id])
+  originalReply      String
+  editedReply        String
+  diffType           String    @default("semantic")
+  extractedCondition String
+  extractedContent   String
+  extractedTags      String    @default("[]")
+  confidence         Float     @default(0.8)
+  status             String    @default("pending")
+  createdAt          DateTime  @default(now())
+  reviewedAt         DateTime?
+}
+
+// === 渠道 ===
+
+model Channel {
+  id           String    @id @default(cuid())
+  type         String
+  name         String
+  config       String    @default("{}")
+  status       String    @default("disconnected")
+  errorMsg     String?
+  messageCount Int       @default(0)
+  lastPollAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  tickets      Ticket[]
+}
+
+// === 设置 ===
+
+model Settings {
+  id                 String   @id @default("singleton")
+  anthropicApiKey    String   @default("")
+  openclawGatewayUrl String   @default("http://localhost:3100")
+  updatedAt          DateTime @updatedAt
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../app/page.tsx"],"sourcesContent":["'use client'\nimport { redirect } from 'next/navigation'\nexport default function Home() { redirect('/tickets') }\n"],"names":[],"mappings":"uCACA,IAAA,EAAA,EAAA,CAAA,CAAA,OACe,SAAS,IAAS,CAAA,EAAA,EAAA,QAAA,AAAQ,EAAC,WAAY"}
