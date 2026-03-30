@@ -1,1 +1,6 @@
-node_modules/\n.next/\nprisma/dev.db\n.env\ndata/chromadb/\ndata/vectors-*.json
+node_modules/
+.next/
+prisma/dev.db
+.env
+data/chromadb/
+data/vectors-*.json
